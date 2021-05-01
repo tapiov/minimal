@@ -27,12 +27,20 @@ end
 
 print("Server : A = " .. store.Store.GlobalStore:getState().valueA .. "  B = " .. store.Store.GlobalStore:getState().valueB)
 
-print("Server : Setting A = 10")
-store.Store.GlobalStore:dispatch(setValueA(10))
+for i = 1, 10, 1 do
 
-print("Server : Setting B = 20")
-store.Store.GlobalStore:dispatch(setValueB(20))
+    wait(5)
 
-print("Server : A = " .. store.Store.GlobalStore:getState().valueA .. "  B = " .. store.Store.GlobalStore:getState().valueB)
+    print("Server : Setting A = A + 1")
+    local newA = store.Store.GlobalStore:getState().valueA + 1
+    store.Store.GlobalStore:dispatch(setValueA(newA))
+    
+    print("Server : Setting B = B + 2")
+    local newB = store.Store.GlobalStore:getState().valueB + 2
+    store.Store.GlobalStore:dispatch(setValueB(newB))
+    
+    print("Server : A = " .. store.Store.GlobalStore:getState().valueA .. "  B = " .. store.Store.GlobalStore:getState().valueB)
+        
+end
 
 print("=================== Server Stop ===================")
