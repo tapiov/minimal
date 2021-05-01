@@ -13,9 +13,9 @@ local store = require(replicatedStorage:WaitForChild("Store"))
 -- Write your component as if Rodux is not involved first.
 -- This helps guide you to create a more focused interface.
 
-local function MyComponent(props)
+local function MyComponent()
     -- Values from Rodux can be accessed just like regular props
-    local value = props.value
+    -- local value = props.value
 
     return Roact.createElement("ScreenGui", {}, {
         HelloWorld = Roact.createElement("TextLabel", {
@@ -35,24 +35,24 @@ end
 
 -- `connect` returns a function, so we call that function, passing in our
 -- component, getting back a new component!
-MyComponent = RoactRodux.connect(
-    function(state, props)
-        -- mapStateToProps is run every time the store's state updates.
-        -- It's also run whenever the component receives new props.
-        return {
-            value = state.value,
-        }
-    end
-)(MyComponent)
+-- MyComponent = RoactRodux.connect(
+--     function(state, props)
+--         -- mapStateToProps is run every time the store's state updates.
+--         -- It's also run whenever the component receives new props.
+--         return {
+--             value = state.value,
+--         }
+--     end
+-- )(MyComponent)
 
 
-local app = Roact.createElement(RoactRodux.StoreProvider, {
-    store = store.store,
-}, {
-    Main = Roact.createElement(MyComponent),
-})
+-- local app = Roact.createElement(RoactRodux.StoreProvider, {
+--     store = store.store,
+-- }, {
+--     Main = Roact.createElement(MyComponent),
+-- })
 
 
 local PlayerGui = players.LocalPlayer.PlayerGui
 
-local handle = Roact.mount(app, PlayerGui, "Minimal GUI")
+local handle = Roact.mount(MyComponent(), PlayerGui, "Minimal GUI")

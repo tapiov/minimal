@@ -14,19 +14,25 @@ local store = require(replicatedStorage:WaitForChild("Store"))
 local function setValueA(value)
     return {
         type = "SetValueA",
-        value = value,
+        value = value
     }
 end
 
 local function setValueB(value)
     return {
         type = "SetValueB",
-        value = value,
+        value = value
     }
 end
 
+print(store.Store.GlobalStore:getState())
+print("Server : A = " .. store.Store.GlobalStore:getState().valueA .. "  B = " .. store.Store.GlobalStore:getState().valueB)
+
 print("Server : Setting A = 10, B = 20")
-store.Store:dispatch(setValueA(10))
-store.Store:dispatch(setValueA(20))
+store.Store.GlobalStore:dispatch(setValueA(10))
+store.Store.GlobalStore:dispatch(setValueB(20))
+
+print(store.Store.GlobalStore:getState())
+-- print("Server : A = " .. store.Store.GlobalStore:getState().valueA .. "  B = " .. store.Store.GlobalStore:getState().valueB)
 
 print("=================== Server Stop ===================")
