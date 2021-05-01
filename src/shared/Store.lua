@@ -73,11 +73,11 @@ if runService:IsServer() then
 
 	-- Provide the current Global Store state to client on request
 	local function fetchServerStore()
-		return store.getState()
+		return store:getState()
 	end
 
 	events.RequestServerStore.OnServerInvoke = fetchServerStore
-	
+
 elseif runService:IsClient() then
 	-- Get the current Global store state using RemoteFunction
 	local currentGlobalStoreState = events.RequestServerStore:InvokeServer()
