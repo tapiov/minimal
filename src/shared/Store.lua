@@ -3,7 +3,7 @@ local Store = {}
 local replicatedStorage = game:GetService("ReplicatedStorage")
 local runService = game:GetService("RunService")
 
-local libs = replicatedStorage:WaitForChild("Libraries") 
+local libs = replicatedStorage:WaitForChild("Libs") 
 local rodux = require(libs.Rodux)
 
 -- Events
@@ -58,9 +58,8 @@ if runService:IsServer() then
 
 elseif runService:IsClient() then
 
-    local store = rodux.Store.new(function(action, currentState) 
-        local state = currentState
-    end)
+    local store = rodux.Store.new(reducer, initialServerState, rodux.loggerMiddleware)
+
 
     local clientStore = rodux.Store.new(reducer, initialClientState)
 

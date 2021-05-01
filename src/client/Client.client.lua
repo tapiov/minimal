@@ -1,15 +1,14 @@
-print("Hello world, from client!")
-
+print("=================== Client Start ===================")
 
 local replicatedStorage = game:GetService("ReplicatedStorage")
 local players = game:GetService("Players")
 
 -- Roact, Rodux & Store
-local libs = replicatedStorage:WaitForChild("Common")
+local libs = replicatedStorage:WaitForChild("Libs")
 local Roact = require(libs:WaitForChild("Roact"))
 local Rodux = require(libs:WaitForChild("Rodux"))
 local RoactRodux = require(libs:WaitForChild("Roact-Rodux"))
-local store = require(libs:WaitForChild("Store"))
+local store = require(replicatedStorage:WaitForChild("Store"))
 
 -- Write your component as if Rodux is not involved first.
 -- This helps guide you to create a more focused interface.
@@ -17,15 +16,11 @@ local store = require(libs:WaitForChild("Store"))
 local function MyComponent(props)
     -- Values from Rodux can be accessed just like regular props
     local value = props.value
-    local onClick = props.onClick
 
-    return Roact.createElement("ScreenGui", nil, {
-        Label = Roact.createElement("TextButton", {
-            -- ...and used in your components!
-            Text = "Current value: " .. value,
-            Size = UDim2.new(1, 0, 1, 0),
-
-            [Roact.Event.Activated] = onClick,
+    return Roact.createElement("ScreenGui", {}, {
+        HelloWorld = Roact.createElement("TextLabel", {
+            Size = UDim2.new(0, 400, 0, 300),
+            Text = "Hello, Roact!"
         })
     })
 end
@@ -47,16 +42,6 @@ MyComponent = RoactRodux.connect(
         return {
             value = state.value,
         }
-    end,
-    function(dispatch)
-        -- mapDispatchToProps only runs once, so create functions here!
-        return {
-            onClick = function()
-                dispatch({
-                    type = "increment",
-                })
-            end,
-        }
     end
 )(MyComponent)
 
@@ -70,4 +55,4 @@ local app = Roact.createElement(RoactRodux.StoreProvider, {
 
 local PlayerGui = players.LocalPlayer.PlayerGui
 
-local handle = Roact.mount(app, PlayerGui, "Clock UI")
+local handle = Roact.mount(app, PlayerGui, "Minimal GUI")

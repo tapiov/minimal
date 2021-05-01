@@ -1,0 +1,19 @@
+{
+    "ClassName": "Folder",
+    "Children": [
+        {
+            "Name": "ServerClientPersistence",
+            "ClassName": "RemoteFunction",
+            "Properties": {
+            }
+        },
+
+        {
+            "Name": "RequestServerStore",
+            "ClassName": "RemoteFunction",
+            "Properties": {
+            }
+        }
+
+    ]
+}
