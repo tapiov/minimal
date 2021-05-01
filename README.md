@@ -8,16 +8,27 @@ Trying to get the Global Store work first. However, the other value, B, gets rem
 
 Log: 
 13:02:04.471  =================== Server Start ===================  -  Server - Server:1
+
   13:02:04.476  >>>>   -  Server - Store:50
+
   13:02:04.476   ▶ {...}  -  Server - Store:51
+
   13:02:04.476   ▼  {
+
                     ["valueA"] = 0,
+
                     ["valueB"] = 0
+
                  }  -  Server - Server:28
+
   13:02:04.477  Server : A = 0  B = 0  -  Server - Server:29
+
   13:02:04.477  Server : Setting A = 10, B = 20  -  Server - Server:31
+
   13:02:04.477   ▼  {
+
                     ["valueA"] = 0
+
                  }  -  Server - Server:35
+                 
   13:02:04.477  =================== Server Stop ===================  -  Server - Server:38
-  
